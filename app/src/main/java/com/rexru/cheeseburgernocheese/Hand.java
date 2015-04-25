@@ -1,4 +1,4 @@
-package com.example.delio_000.cheeseburgernocheese;
+package com.rexru.cheeseburgernocheese;
 
 /**
  * Created by Rexru on 4/15/2015.

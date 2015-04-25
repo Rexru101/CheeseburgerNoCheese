@@ -1,4 +1,4 @@
-package com.example.delio_000.cheeseburgernocheese;
+package com.rexru.cheeseburgernocheese;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
