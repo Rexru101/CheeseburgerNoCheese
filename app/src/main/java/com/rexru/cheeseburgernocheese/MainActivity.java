@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.multiplayer.Multiplayer;
 import com.google.android.gms.games.multiplayer.Participant;
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage;
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessageReceivedListener;
@@ -105,7 +108,8 @@ public class MainActivity extends Activity
 
     @Override
     public void onJoinedRoom(int i, Room room) {
-
+        Intent intent = Games.RealTimeMultiplayer.getWaitingRoomIntent(googleApiClient, room, 2);
+        startActivityForResult(intent, WAITING_ROOM);
     }
 
     @Override
@@ -142,7 +146,7 @@ public class MainActivity extends Activity
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(getResources(), R.id.myimage, options);
+        //BitmapFactory.decodeResource(getResources(), R.id., options);
         int imageHeight = options.outHeight;
         int imageWidth = options.outWidth;
         String imageType = options.outMimeType;
@@ -201,5 +205,36 @@ public class MainActivity extends Activity
     @Override
     public void onP2PDisconnected(String s) {
 
+    }
+
+    public void onActivityResult(int request, int response, Intent intent)
+    {
+        Bundle extras = intent.getExtras();
+        final ArrayList<String> invitees =
+                intent.getStringArrayListExtra(Games.EXTRA_PLAYER_IDS);
+
+        Bundle autoMatchCriteria = null;
+        int minAutoMatchPlayers = intent.getIntExtra(Multiplayer.EXTRA_MIN_AUTOMATCH_PLAYERS, 0);
+        int maxAutoMatchPlayers = intent.getIntExtra(Multiplayer.EXTRA_MAX_AUTOMATCH_PLAYERS, 0);
+
+        if (minAutoMatchPlayers > 0) {
+            autoMatchCriteria = RoomConfig.createAutoMatchCriteria(
+                    minAutoMatchPlayers, maxAutoMatchPlayers, 0);
+        } else {
+            autoMatchCriteria = null;
+        }
+
+        RoomConfig.Builder roomConfigBuilder = RoomConfig.builder(this);
+        if (invitees != null) {
+            roomConfigBuilder.addPlayersToInvite(invitees);
+            if (autoMatchCriteria != null) {
+                roomConfigBuilder.setAutoMatchCriteria(autoMatchCriteria);
+            }
+            RoomConfig roomConfig = roomConfigBuilder.build();
+            Games.RealTimeMultiplayer.create(googleApiClient, roomConfig);
+
+            // prevent screen from sleeping during handshake
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
     }
 }
