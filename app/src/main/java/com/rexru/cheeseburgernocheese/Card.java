@@ -11,4 +11,9 @@ public class Card
     //Ability ability;
     //Sprite sprite;
     Point coordinates;
+
+    Card()
+    {
+        ;
+    }
 }
