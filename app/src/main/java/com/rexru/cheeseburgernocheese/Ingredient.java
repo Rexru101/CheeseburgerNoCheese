@@ -7,6 +7,7 @@ public class Ingredient extends Card
 {
     String category;
     int tradeCost;
+    CardDetails cardDetail;
 
     Ingredient(int whichIngredient)
     {

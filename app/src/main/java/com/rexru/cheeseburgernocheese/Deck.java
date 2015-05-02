@@ -65,9 +65,60 @@ public class Deck extends Card
             cardAmount++;
         }
         */
-        //add in duplicates. out of bounds error
-        for (int i = 0; i < 80; i++)
-            ingredientDeck.add(new Ingredient(i));
+        //create deck
+        for (int i = 0; i < 36; i++)
+        {
+            Ingredient ingredient = new Ingredient(i);
+            ingredientDeck.add(ingredient);
 
+            switch (ingredient.cardDetail)
+            {
+                case CHEESE://x2
+                case MILK:
+                case BROCCOLI:
+                case VEGGIE_PATTY:
+                    ingredientDeck.add(new Ingredient(i));
+                    break;
+                case PASTA://x3
+                case WHOLE_WHEAT_PASTA:
+                case APPLE:
+                case CARROTS:
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    break;
+                case CHICKEN://x4
+                case STEAK:
+                case TOMATO:
+                case MUSHROOM:
+                case SPINACH:
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    break;
+                case LETTUCE://x5
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    break;
+                case EGGS://x6
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    break;
+                case RICE://x9
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(i));
+                    break;
+            }
+        }
     }
 }
