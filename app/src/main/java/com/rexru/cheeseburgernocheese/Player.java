@@ -1,11 +1,14 @@
 package com.rexru.cheeseburgernocheese;
 
-/**
+import java.util.List;
+
+/*
  * Created by Rexru on 4/15/2015.
  */
 public class Player
 {
     //Cursor cursor;
+    List<Ingredient> hand;
 
     public void play(Card card)
     {
@@ -25,5 +28,10 @@ public class Player
     public void completeOrder(Ingredient[] ingredients)
     {
 
+    }
+
+    public void addHand(Ingredient ingredient)
+    {
+        hand.add(ingredient);
     }
 }

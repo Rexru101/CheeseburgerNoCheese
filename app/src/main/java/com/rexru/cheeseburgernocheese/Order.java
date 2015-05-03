@@ -1,12 +1,14 @@
 package com.rexru.cheeseburgernocheese;
 
+import java.util.List;
+
 /*
  * Created by Rexru on 4/15/2015.
  */
 public class Order extends Card
 {
     int stars;
-    String[] recipe;
+    List<Ingredient> recipe;
 
     Order(int whichOrder)
     {
@@ -36,5 +38,10 @@ public class Order extends Card
             case 20:
         }
         */
+    }
+
+    public List<Ingredient> getRecipe()
+    {
+        return recipe;
     }
 }
