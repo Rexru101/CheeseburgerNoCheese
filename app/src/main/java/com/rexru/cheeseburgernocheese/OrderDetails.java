@@ -8,7 +8,9 @@ import java.util.List;
 public enum OrderDetails
 {
     SMOOTHIE (2, OrderAbility.TRADE_DOWN, IngredientCategory.FRUIT, IngredientCategory.VEGETABLE, "smoothie"),
-
+    VEGGIE_PILAF (2, OrderAbility.OPPONENT_TRASH_HAND, IngredientDetails.RICE, IngredientCategory.VEGETABLE, "veggiePilaf"),
+    //new Ingredient? or IngredientDetails.Rice
+    GUACAMOLE (2, OrderAbility.)
     ;
 
     int pointValue;
@@ -17,7 +19,7 @@ public enum OrderDetails
     //List<IngredientCategory>
     String name;
 
-    OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory, Ingredient ingredient, String name)
+    OrderDetails(int pointValue, OrderAbility orderAbility, IngredientDetails ingredient,IngredientCategory ingredientCategory,  String name)
     {
         this.pointValue = pointValue;
         this.orderAbility = orderAbility;

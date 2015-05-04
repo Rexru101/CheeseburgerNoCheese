@@ -6,6 +6,7 @@ package com.rexru.cheeseburgernocheese;
 public enum OrderAbility
 {
     TRADE_DOWN,
-
+    OPPONENT_TRASH_HAND,
+    
     ;
 }
