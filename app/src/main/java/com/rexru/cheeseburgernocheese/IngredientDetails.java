@@ -1,5 +1,7 @@
 package com.rexru.cheeseburgernocheese;
 
+import android.widget.ImageView;
+
 import java.util.List;
 
 /*
@@ -8,7 +10,7 @@ import java.util.List;
 public enum IngredientDetails
 {
     //oils < 0
-    TRUFFLE_OIL (3, IngredientCategory.OIL, IngredientAbility.SUBSTITUTE, Game.listOfOrderedIngredients,"truffleOil"),//1
+    TRUFFLE_OIL (3, IngredientCategory.OIL, IngredientAbility.SUBSTITUTE, Game.listOfOrderedIngredients, "truffleOil"),//1
     BUTTER (3, IngredientCategory.OIL, IngredientAbility.SUBSTITUTE, Game.listOfOrderedIngredients, "butter"),//1
     OLIVE_OIL (3, IngredientCategory.OIL, IngredientAbility.SUBSTITUTE, Game.listOfOrderedIngredients, "oliveOil"),//1
     GRAPESEED_OIL (3, IngredientCategory.OIL, IngredientAbility.SUBSTITUTE, Game.listOfOrderedIngredients, "grapeseedOil"),//1
@@ -64,5 +66,118 @@ public enum IngredientDetails
         this.ability = ability;
         this.listOfCards = listOfCards;
         this.name = name;
+        ImageView imageView = new ImageView(MyApplication.getInstance());
+
+        switch (this)
+        {
+            case TRUFFLE_OIL:
+                imageView.setImageResource(R.drawable.oils_truffle);
+                break;
+            case BUTTER:
+                imageView.setImageResource(R.drawable.oil_butter);
+                break;
+            case OLIVE_OIL:
+                imageView.setImageResource(R.drawable.oil_olive);
+                break;
+            case GRAPESEED_OIL:
+                imageView.setImageResource(R.drawable.oils_grapeseed);
+                break;
+            case CHEESE:
+                imageView.setImageResource(R.drawable.dairy_cheese);
+                break;
+            case EGGS:
+                imageView.setImageResource(R.drawable.dairy_eggs);
+                break;
+            case MILK:
+                imageView.setImageResource(R.drawable.dairy_milk);
+                break;
+            case BACON:
+                imageView.setImageResource(R.drawable.meat_bacon);
+                break;
+            case CHICKEN:
+                imageView.setImageResource(R.drawable.meat_chicken);
+                break;
+            case STEAK:
+                imageView.setImageResource(R.drawable.meat_steak);
+                break;
+            case TOFURKY:
+                imageView.setImageResource(R.drawable.meat_tofurky);
+                break;
+            case CORN:
+                imageView.setImageResource(R.drawable.grain_corn);
+                break;
+            case LENTILS:
+                imageView.setImageResource(R.drawable.grain_lentils);
+                break;
+            case OATS:
+                imageView.setImageResource(R.drawable.grain_oats);
+                break;
+            case PASTA:
+                imageView.setImageResource(R.drawable.grain_pasta);
+                break;
+            case QUINOA:
+                imageView.setImageResource(R.drawable.grain_quinoa);
+                break;
+            case RICE:
+                imageView.setImageResource(R.drawable.grain_rice);
+                break;
+            case WHOLE_WHEAT_PASTA:
+                imageView.setImageResource(R.drawable.grain_whole_wheat);
+                break;
+            case ORANGE:
+                imageView.setImageResource(R.drawable.fruit_orange);
+                break;
+            case POMEGRANATE:
+                imageView.setImageResource(R.drawable.fruit_pomegranite);
+                break;
+            case STRAWBERRY:
+                imageView.setImageResource(R.drawable.fruit_strawberry);
+                break;
+            case TOMATO:
+                imageView.setImageResource(R.drawable.fruit_tomato);
+                break;
+            case APPLE:
+                imageView.setImageResource(R.drawable.fruit_apple);
+                break;
+            case AVOCADO:
+                imageView.setImageResource(R.drawable.fruit_avocado);
+                break;
+            case BANANA:
+                imageView.setImageResource(R.drawable.fruit_banana);
+                break;
+            case BLUEBERRY:
+                imageView.setImageResource(R.drawable.fruit_blueberry);
+                break;
+            case GRAPES:
+                imageView.setImageResource(R.drawable.fruit_grape);
+                break;
+            case LEMON:
+                imageView.setImageResource(R.drawable.fruit_lemon);
+                break;
+            case LIME:
+                imageView.setImageResource(R.drawable.fruit_lime);
+                break;
+            case ASPARAGUS:
+                imageView.setImageResource(R.drawable.veg_asparagus);
+                break;
+            case BROCCOLI:
+                imageView.setImageResource(R.drawable.veg_broccoli);
+                break;
+            case CARROTS:
+                imageView.setImageResource(R.drawable.veg_carrots);
+                break;
+            case LETTUCE:
+                imageView.setImageResource(R.drawable.veg_lettuce);
+                break;
+            case MUSHROOM:
+                imageView.setImageResource(R.drawable.veg_mushroom);
+                break;
+            case SPINACH:
+                imageView.setImageResource(R.drawable.veg_spinach);
+                break;
+            case VEGGIE_PATTY:
+                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                break;
+        }
     }
 }
