@@ -32,18 +32,20 @@ public enum OrderDetails
     RICE_KRISPIE_TREAT (5, OrderAbility.NONE, IngredientCategory.FRUIT, IngredientCategory.FRUIT, IngredientCategory.DAIRY, IngredientDetails.RICE, "riceKrispieTreat"),
     SPAGHETTI_AND_MEATBALLS (5, OrderAbility.NONE, IngredientCategory.DAIRY, IngredientCategory.MEAT, IngredientDetails.TOMATO, IngredientDetails.PASTA, "spaghettiAndMeatballs");
 
-    int pointValue;
+    int starValue;
     OrderAbility orderAbility;
     List<Ingredient> recipe;
     //List<IngredientCategory>
     String name;
+    ImageView imageView;
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory, IngredientDetails ingredient, String name)
     {
-        this.pointValue = pointValue;
+        this.starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
         recipe.add();
+        imageView = getImageView();
     }
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2, String name)
@@ -52,6 +54,7 @@ public enum OrderDetails
         this.orderAbility = orderAbility;
         this.name = name;
         recipe.add();
+        imageView = getImageView();
     }
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory, IngredientDetails ingredient1, IngredientDetails ingredient2, String name)
@@ -60,6 +63,7 @@ public enum OrderDetails
         this.orderAbility = orderAbility;
         this.recipe = recipe;
         this.name = name;
+        imageView = getImageView();
     }
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2, IngredientDetails ingredient, String name)
@@ -68,6 +72,7 @@ public enum OrderDetails
         this.orderAbility = orderAbility;
         this.name = name;
         recipe.add();
+        imageView = getImageView();
     }
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2, IngredientCategory ingredientCategory3, IngredientDetails ingredient, String name)
@@ -76,6 +81,7 @@ public enum OrderDetails
         this.orderAbility = orderAbility;
         this.name = name;
         recipe.add();
+        imageView = getImageView();
     }
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2, IngredientDetails ingredient1, IngredientDetails ingredient2, String name)
@@ -84,11 +90,7 @@ public enum OrderDetails
         this.orderAbility = orderAbility;
         this.name = name;
         recipe.add();
-    }
-
-    OrderDetails(int pointValue, OrderAbility orderAbility, IngredientDetails ingredientDetails)
-    {
-
+        imageView = getImageView();
     }
 
     public ImageView getImageView()

@@ -11,6 +11,7 @@ public class Game
     static List<Ingredient> listOfOrderedIngredients;
     static List<Ingredient> otherListOfOrderedIngredients;
     IngredientDeck ingredientDeck;
+    OrderDeck orderDeck;
     Player p1;
     Player p2;
     Store store;
@@ -46,6 +47,7 @@ public class Game
             store.addToStore(ingredientDeck.draw());
         }
 
+        orderDeck = new OrderDeck();
     }
 
     public void shiftStore()
