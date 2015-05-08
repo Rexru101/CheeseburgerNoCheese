@@ -7,7 +7,20 @@ import java.util.List;
  */
 public class OrderArea
 {
-    List<Order> orders;
+    List<Order> activeOrders;
 
+    OrderArea(OrderDeck orderDeck)
+    {
+        activeOrders.add(orderDeck.draw());
+        activeOrders.add(orderDeck.draw());
+        activeOrders.add(orderDeck.draw());
+    }
 
+    public void getMoreOrders(OrderDeck orderDeck)
+    {
+        for (; activeOrders.size() < 3;)
+        {
+            activeOrders.add(orderDeck.draw());
+        }
+    }
 }

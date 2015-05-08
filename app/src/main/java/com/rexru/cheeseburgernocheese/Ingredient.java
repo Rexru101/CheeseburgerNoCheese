@@ -1,17 +1,21 @@
 package com.rexru.cheeseburgernocheese;
 
+import android.widget.ImageView;
+
 import java.util.List;
 
 /*
  * Created by Rexru on 4/15/2015.
  */
-public class Ingredient extends Card
+public class Ingredient
 {
     IngredientCategory category;
     int tradeCost;
     IngredientDetails cardDetail;
     List<Ingredient> effectedCards;
     IngredientAbility cardAbility;
+    String name;
+    ImageView imageView;
 
     Ingredient(int whichIngredient)
     {

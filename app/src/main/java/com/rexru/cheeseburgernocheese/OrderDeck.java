@@ -35,4 +35,9 @@ public class OrderDeck
         orderDeck.add(new Order(OrderDetails.SPAGHETTI_AND_MEATBALLS));
         Collections.shuffle(orderDeck);
     }
+
+    public Order draw()
+    {
+        return orderDeck.remove(0);
+    }
 }

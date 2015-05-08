@@ -58,6 +58,7 @@ public enum IngredientDetails
     IngredientAbility ability;
     List<Ingredient> listOfCards;
     String name;
+    ImageView imageView;
 
     IngredientDetails(int tradeCost, IngredientCategory category, IngredientAbility ability, List<Ingredient> listOfCards, String name)
     {
@@ -66,8 +67,12 @@ public enum IngredientDetails
         this.ability = ability;
         this.listOfCards = listOfCards;
         this.name = name;
-        ImageView imageView = new ImageView(MyApplication.getInstance());
+        imageView = getImageView();
+    }
 
+    public ImageView getImageView()
+    {
+        imageView = new ImageView(MyApplication.getInstance());
         switch (this)
         {
             case TRUFFLE_OIL:
@@ -179,5 +184,6 @@ public enum IngredientDetails
                 imageView.setImageResource(R.drawable.veg_veggie_patty);
                 break;
         }
+        return imageView;
     }
 }

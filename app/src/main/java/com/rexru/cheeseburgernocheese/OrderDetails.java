@@ -3,6 +3,7 @@ package com.rexru.cheeseburgernocheese;
 import android.widget.ImageView;
 
 import java.util.List;
+import java.util.Objects;
 
 /*
  * Created by Rexru101 on 5/2/2015.
@@ -34,8 +35,7 @@ public enum OrderDetails
 
     int starValue;
     OrderAbility orderAbility;
-    List<Ingredient> recipe;
-    //List<IngredientCategory>
+    List<Object> recipe;
     String name;
     ImageView imageView;
 
@@ -44,52 +44,68 @@ public enum OrderDetails
         this.starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
-        recipe.add();
+        recipe.add(ingredientCategory);
+        recipe.add(ingredient);
         imageView = getImageView();
     }
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2, String name)
     {
-        this.pointValue = pointValue;
+        this.starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
-        recipe.add();
+        recipe.add(ingredientCategory1);
+        recipe.add(ingredientCategory2);
         imageView = getImageView();
     }
 
-    OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory, IngredientDetails ingredient1, IngredientDetails ingredient2, String name)
+    OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory, IngredientDetails ingredient1,
+                 IngredientDetails ingredient2, String name)
     {
-        this.pointValue = pointValue;
+        this.starValue = pointValue;
         this.orderAbility = orderAbility;
-        this.recipe = recipe;
         this.name = name;
+        recipe.add(ingredientCategory);
+        recipe.add(ingredient1);
+        recipe.add(ingredient2);
         imageView = getImageView();
     }
 
-    OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2, IngredientDetails ingredient, String name)
+    OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2,
+                 IngredientDetails ingredient, String name)
     {
-        this.pointValue = pointValue;
+        this.starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
-        recipe.add();
+        recipe.add(ingredientCategory1);
+        recipe.add(ingredientCategory2);
+        recipe.add(ingredient);
         imageView = getImageView();
     }
 
-    OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2, IngredientCategory ingredientCategory3, IngredientDetails ingredient, String name)
+    OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2,
+                 IngredientCategory ingredientCategory3, IngredientDetails ingredient, String name)
     {
-        this.pointValue = pointValue;
+        this.starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
-        recipe.add();
+        recipe.add(ingredientCategory1);
+        recipe.add(ingredientCategory2);
+        recipe.add(ingredientCategory3);
+        recipe.add(ingredient);
         imageView = getImageView();
     }
 
-    OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2, IngredientDetails ingredient1, IngredientDetails ingredient2, String name)
+    OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2,
+                 IngredientDetails ingredient1, IngredientDetails ingredient2, String name)
     {
-        this.pointValue = pointValue;
+        this.starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
-        recipe.add();
+        recipe.add(ingredientCategory1);
+        recipe.add(ingredientCategory2);
+        recipe.add(ingredient1);
+        recipe.add(ingredient2);
         imageView = getImageView();
     }
 
@@ -162,7 +178,6 @@ public enum OrderDetails
                 imageView.setImageResource(R.dra.veg_veggie_patty);
                 break;
         }
-
         return imageView;
     }
 }
