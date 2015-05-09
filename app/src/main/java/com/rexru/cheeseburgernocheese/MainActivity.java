@@ -39,29 +39,38 @@ public class MainActivity extends Activity
     String myId;
     ArrayList<Participant> participants;
 
+    Game game;
+    Player p1, p2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        /*test
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
+        */
+        startCNC();
     }
 
+    public void startCNC()
+    {
+        //game = new Game(participants.get(0), participants.get(1));
+        game = new Game();
+    }
     @Override
     protected void onStart() {
         super.onStart();
-        googleApiClient.connect();
+        //googleApiClient.connect();test
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        googleApiClient.disconnect();
+        //googleApiClient.disconnect();test
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.rexru.cheeseburgernocheese;
 
 import android.widget.ImageView;
+import android.widget.ResourceCursorAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -18,10 +20,21 @@ public class Order
 
     Order(OrderDetails orderDetails)
     {
-        this.starValue = orderDetails.starValue;
-        this.name = orderDetails.name;
-        this.orderAbility = orderDetails.orderAbility;
-        this.recipe = orderDetails.recipe;
-        this.imageView = orderDetails.getImageView();
+        starValue = orderDetails.starValue;
+        name = orderDetails.name;
+        orderAbility = orderDetails.orderAbility;
+        recipe = new ArrayList<>();
+        recipe = orderDetails.recipe;
+        imageView = orderDetails.getImageView();
     }
+
+//    Order(OrderDetails orderDetails)
+//    {
+//        this.starValue = orderDetails.starValue;
+//        this.name = orderDetails.name;
+//        this.orderAbility = orderDetails.orderAbility;
+//        recipe = new ArrayList<>();
+//        this.recipe = orderDetails.recipe;
+//        this.imageView = orderDetails.getImageView();
+//    }
 }

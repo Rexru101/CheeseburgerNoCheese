@@ -2,8 +2,8 @@ package com.rexru.cheeseburgernocheese;
 
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /*
  * Created by Rexru101 on 5/2/2015.
@@ -37,76 +37,76 @@ public enum OrderDetails
     OrderAbility orderAbility;
     List<Object> recipe;
     String name;
-    ImageView imageView;
+    //ImageView imageView;
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory, IngredientDetails ingredient, String name)
     {
-        this.starValue = pointValue;
+        starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
+        recipe = new ArrayList<>();
         recipe.add(ingredientCategory);
         recipe.add(ingredient);
-        imageView = getImageView();
     }
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2, String name)
     {
-        this.starValue = pointValue;
+        starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
+        recipe = new ArrayList<>();
         recipe.add(ingredientCategory1);
         recipe.add(ingredientCategory2);
-        imageView = getImageView();
     }
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory, IngredientDetails ingredient1,
                  IngredientDetails ingredient2, String name)
     {
-        this.starValue = pointValue;
+        starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
+        recipe = new ArrayList<>();
         recipe.add(ingredientCategory);
         recipe.add(ingredient1);
         recipe.add(ingredient2);
-        imageView = getImageView();
     }
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2,
                  IngredientDetails ingredient, String name)
     {
-        this.starValue = pointValue;
+        starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
+        recipe = new ArrayList<>();
         recipe.add(ingredientCategory1);
         recipe.add(ingredientCategory2);
         recipe.add(ingredient);
-        imageView = getImageView();
     }
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2,
                  IngredientCategory ingredientCategory3, IngredientDetails ingredient, String name)
     {
-        this.starValue = pointValue;
+        starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
+        recipe = new ArrayList<>();
         recipe.add(ingredientCategory1);
         recipe.add(ingredientCategory2);
         recipe.add(ingredientCategory3);
         recipe.add(ingredient);
-        imageView = getImageView();
     }
 
     OrderDetails(int pointValue, OrderAbility orderAbility, IngredientCategory ingredientCategory1, IngredientCategory ingredientCategory2,
                  IngredientDetails ingredient1, IngredientDetails ingredient2, String name)
     {
-        this.starValue = pointValue;
+        starValue = pointValue;
         this.orderAbility = orderAbility;
         this.name = name;
+        recipe = new ArrayList<>();
         recipe.add(ingredientCategory1);
         recipe.add(ingredientCategory2);
         recipe.add(ingredient1);
         recipe.add(ingredient2);
-        imageView = getImageView();
     }
 
     public ImageView getImageView()
@@ -115,67 +115,67 @@ public enum OrderDetails
         switch (this)
         {
             case SMOOTHIE:
-                imageView.setImageResource();
+                imageView.setImageResource(R.drawable.recipe_01_smoothie);
                 break;
             case VEGGIE_PILAF:
-                imageView.setImageResource(R.drawable.);
+                imageView.setImageResource(R.drawable.recipe_02_veggie_pilaf);
                 break;
             case GUACAMOLE:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_03_guac);
                 break;
             case PASTA_WITH_SAUCE:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_04_pasta_sauce);
                 break;
             case FRUIT_SALAD:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_05_fruit_salad);
                 break;
             case VEGGIE_KEBAB:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_06_veggie_kebab);
                 break;
             case WILD_RICE:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_07_wild_rice);
                 break;
             case VEGGIE_ROLL:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_08_veggie_roll);
                 break;
             case OATMEAL_WITH_FRUIT:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_09_oatmeal_fruit);
                 break;
             case SALSA_AND_CHIPS:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_10_salsa_chips);
                 break;
             case STEAK_AND_MASH:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_11_steak_mash);
                 break;
             case VEGGIE_FRIED_RICE:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_12_veggie_fried_rice);
                 break;
             case LETTUCE_WRAP:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_13_lettuce_wrap);
                 break;
             case CHICKEN_STIR_FRY:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_14_chicken_stir_fry);
                 break;
             case RICE_PUDDING:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_15_rice_pudding);
                 break;
             case CREAMY_SPINACH_PASTA:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_16_creamy_spinach_pasta);
                 break;
             case CAESAR_SALAD:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_17_cesar_salad);
                 break;
             case CARROT_CAKE:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_18_carrot_cake);
                 break;
             case OMELETTE:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_19_omelette);
                 break;
             case RICE_KRISPIE_TREAT:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_20_rice_krispie);
                 break;
             case SPAGHETTI_AND_MEATBALLS:
-                imageView.setImageResource(R.dra.veg_veggie_patty);
+                imageView.setImageResource(R.drawable.recipe_21_spaghetti);
                 break;
         }
         return imageView;

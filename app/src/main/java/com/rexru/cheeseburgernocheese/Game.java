@@ -1,5 +1,7 @@
 package com.rexru.cheeseburgernocheese;
 
+import com.google.android.gms.games.multiplayer.Participant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class Game
 {
     static List<Ingredient> listOfOrderedIngredients;
     static List<Ingredient> otherListOfOrderedIngredients;
+
     IngredientDeck ingredientDeck;
     OrderDeck orderDeck;
     Player p1;
@@ -18,22 +21,38 @@ public class Game
     Trash trash;
     OrderArea orderArea;
 
-    Game(Player p1, Player p2)
+    //Game(Participant participant1, Participant participant2)
+    Game()
     {
-        for (int i = 0; i < 36; i++)
+        listOfOrderedIngredients = new ArrayList<>();
+        otherListOfOrderedIngredients = new ArrayList<>();
+        //p1 = new Player(participant1);
+        //p2 = new Player(participant2);
+        p1 = new Player();
+        p2 = new Player();
+        //Ingredient ingredient;
+
+        //creates ingredient deck
+        for (IngredientDetails iDetails: IngredientDetails.values())
         {
-            listOfOrderedIngredients.add(new Ingredient(i));
+            //ingredient = new Ingredient(iDetails);
+            //if (listOfOrderedIngredients.size() == 0)
+                //System.out.println(listOfOrderedIngredients.toString());
+            listOfOrderedIngredients.add(new Ingredient(iDetails));
         }
 
-        otherListOfOrderedIngredients = Game.listOfOrderedIngredients.subList(11,18);
-        otherListOfOrderedIngredients.addAll(listOfOrderedIngredients.subList(29,36));
-        otherListOfOrderedIngredients.addAll(listOfOrderedIngredients.subList(7,11));
-        otherListOfOrderedIngredients.addAll(listOfOrderedIngredients.subList(29,36));
-        otherListOfOrderedIngredients.addAll(listOfOrderedIngredients.subList(7,11));
-        otherListOfOrderedIngredients.addAll(listOfOrderedIngredients.subList(16,16));
+        //creates a subset of ingredients 30 elements
+        otherListOfOrderedIngredients.addAll(listOfOrderedIngredients.subList(11, 18));//grains
+        otherListOfOrderedIngredients.addAll(listOfOrderedIngredients.subList(29,36));//vegetables
+        otherListOfOrderedIngredients.addAll(listOfOrderedIngredients.subList(7,11));//meats
+        otherListOfOrderedIngredients.addAll(listOfOrderedIngredients.subList(29,36));//vegetables
+        otherListOfOrderedIngredients.addAll(listOfOrderedIngredients.subList(7,11));//meats
+        otherListOfOrderedIngredients.addAll(listOfOrderedIngredients.subList(16,17));//rice
 
-        this.p1 = p1;
-        this.p2 = p2;
+        for (IngredientDetails iDetails: IngredientDetails.values())
+        {
+            iDetails.getImageView();
+        }
         ingredientDeck = new IngredientDeck();
 
         for (int i = 0; i < 5; i++)
@@ -42,12 +61,14 @@ public class Game
             p2.addHand(ingredientDeck.draw());
         }
 
+        store = new Store();
         for (int i = 0; i < 5; i++)
         {
             store.addToStore(ingredientDeck.draw());
         }
 
         orderDeck = new OrderDeck();
+        orderArea = new OrderArea(orderDeck);
     }
 
     public void shiftStore()

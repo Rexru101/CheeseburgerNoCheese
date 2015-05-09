@@ -1,14 +1,18 @@
 package com.rexru.cheeseburgernocheese;
 
+import android.widget.ImageView;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /*
  * Created by Rexru on 4/15/2015.
  */
-public class IngredientDeck extends Card
+public class IngredientDeck
 {
     List<Ingredient> ingredientDeck;
+    ImageView imageView;
 
     IngredientDeck()
     {
@@ -65,57 +69,62 @@ public class IngredientDeck extends Card
 //        }
 //        */
         //create deck
-        for (int i = 0; i < 36; i++)
+        imageView = new ImageView(MyApplication.getInstance());
+        imageView.setImageResource(R.drawable.back_template);
+        ingredientDeck = new ArrayList<>();
+        Ingredient ingredient;
+
+        for (IngredientDetails iDetails: IngredientDetails.values())
         {
-            Ingredient ingredient = new Ingredient(i);
+            ingredient = new Ingredient(iDetails);
             ingredientDeck.add(ingredient);
 
-            switch (ingredient.cardDetail)
+            switch (ingredient.ingredientDetail)
             {
                 case CHEESE://x2
                 case MILK:
                 case BROCCOLI:
                 case VEGGIE_PATTY:
-                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(iDetails));
                     break;
                 case PASTA://x3
                 case WHOLE_WHEAT_PASTA:
                 case APPLE:
                 case CARROTS:
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
                     break;
                 case CHICKEN://x4
                 case STEAK:
                 case TOMATO:
                 case MUSHROOM:
                 case SPINACH:
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
                     break;
                 case LETTUCE://x5
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
                     break;
                 case EGGS://x6
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
                     break;
                 case RICE://x9
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
-                    ingredientDeck.add(new Ingredient(i));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
+                    ingredientDeck.add(new Ingredient(iDetails));
                     break;
             }
         }
@@ -124,6 +133,13 @@ public class IngredientDeck extends Card
 
     public Ingredient draw()
     {
-        return ingredientDeck.remove(0);
+        Ingredient temp = ingredientDeck.get(0);
+        ingredientDeck.remove(0);
+        return temp;
+    }
+
+    public List<Ingredient> getIngredientDeck()
+    {
+        return ingredientDeck;
     }
 }

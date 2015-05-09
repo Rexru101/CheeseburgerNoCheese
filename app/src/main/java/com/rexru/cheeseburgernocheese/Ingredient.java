@@ -2,6 +2,7 @@ package com.rexru.cheeseburgernocheese;
 
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -11,25 +12,32 @@ public class Ingredient
 {
     IngredientCategory category;
     int tradeCost;
-    IngredientDetails cardDetail;
+    IngredientDetails ingredientDetail;
     List<Ingredient> effectedCards;
     IngredientAbility cardAbility;
     String name;
     ImageView imageView;
-
+/*
     Ingredient(int whichIngredient)
     {
-        /*
-        this.setCategory(whichIngredient);
-        this.setTradeCost(whichIngredient);
-        this.setName(whichIngredient);
-        */
         IngredientDetails[] cardDetails = IngredientDetails.values();
         this.category = cardDetails[whichIngredient].category;
         this.tradeCost = cardDetails[whichIngredient].tradeCost;
         this.name = cardDetails[whichIngredient].name;
         this.effectedCards = cardDetails[whichIngredient].listOfCards;
         this.cardAbility = cardDetails[whichIngredient].ability;
+    }
+*/
+    Ingredient(IngredientDetails ingredientDetails)
+    {
+        category = ingredientDetails.category;
+        tradeCost = ingredientDetails.tradeCost;
+        name = ingredientDetails.name;
+        effectedCards = new ArrayList<>();
+        effectedCards = ingredientDetails.listOfCards;
+        cardAbility = ingredientDetails.ability;
+        ingredientDetail = ingredientDetails;
+        //imageView = ingredientDetails.imageView;
     }
 
     public boolean canSubstituteFor(Ingredient ingredient)

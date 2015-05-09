@@ -1,5 +1,6 @@
 package com.rexru.cheeseburgernocheese;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -11,6 +12,7 @@ public class OrderArea
 
     OrderArea(OrderDeck orderDeck)
     {
+        activeOrders = new ArrayList<>();
         activeOrders.add(orderDeck.draw());
         activeOrders.add(orderDeck.draw());
         activeOrders.add(orderDeck.draw());

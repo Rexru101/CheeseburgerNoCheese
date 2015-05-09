@@ -1,5 +1,8 @@
 package com.rexru.cheeseburgernocheese;
 
+import com.google.android.gms.games.multiplayer.Participant;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -9,6 +12,17 @@ public class Player
 {
     //Cursor cursor;
     List<Ingredient> hand;
+    Participant participant;
+
+    Player(Participant participant)
+    {
+        this.participant = participant;
+    }
+
+    Player()//test
+    {
+        hand = new ArrayList<>();
+    }
 
     public void play(Ingredient ingredient)
     {

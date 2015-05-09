@@ -1,5 +1,6 @@
 package com.rexru.cheeseburgernocheese;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -11,6 +12,7 @@ public class Store
 
     public void addToStore(Ingredient ingredient)
     {
+        store = new ArrayList<>();
         store.add(ingredient);
     }
 

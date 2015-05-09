@@ -1,5 +1,6 @@
 package com.rexru.cheeseburgernocheese;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -11,6 +12,7 @@ public class Trash
 
     public void addToTrash(Ingredient ingredient)
     {
+        trash = new ArrayList<>();
         trash.add(ingredient);
     }
 }

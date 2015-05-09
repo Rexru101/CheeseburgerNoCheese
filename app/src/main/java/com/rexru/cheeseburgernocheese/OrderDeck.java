@@ -1,5 +1,8 @@
 package com.rexru.cheeseburgernocheese;
 
+import android.widget.ImageView;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,9 +12,14 @@ import java.util.List;
 public class OrderDeck
 {
     List<Order> orderDeck;
+    ImageView imageView;
 
     OrderDeck()
     {
+        imageView = new ImageView(MyApplication.getInstance());
+        imageView.setImageResource(R.drawable.back_template);
+
+        orderDeck = new ArrayList<>();
         orderDeck.add(new Order(OrderDetails.SMOOTHIE));
         orderDeck.add(new Order(OrderDetails.VEGGIE_PILAF));
         orderDeck.add(new Order(OrderDetails.GUACAMOLE));
