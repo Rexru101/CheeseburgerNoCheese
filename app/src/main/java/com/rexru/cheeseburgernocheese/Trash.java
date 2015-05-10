@@ -1,5 +1,7 @@
 package com.rexru.cheeseburgernocheese;
 
+import android.widget.ImageView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +11,17 @@ import java.util.List;
 public class Trash
 {
     List<Ingredient> trash;
+    ImageView imageView;
+
+    Trash()
+    {
+        imageView = new ImageView(MyApplication.getInstance());
+    }
 
     public void addToTrash(Ingredient ingredient)
     {
         trash = new ArrayList<>();
         trash.add(ingredient);
+        imageView = ingredient.imageView;
     }
 }

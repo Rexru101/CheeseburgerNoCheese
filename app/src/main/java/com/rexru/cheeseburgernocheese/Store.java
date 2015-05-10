@@ -10,9 +10,13 @@ public class Store
 {
     List<Ingredient> store;
 
-    public void addToStore(Ingredient ingredient)
+    Store()
     {
         store = new ArrayList<>();
+    }
+
+    public void addToStore(Ingredient ingredient)
+    {
         store.add(ingredient);
     }
 

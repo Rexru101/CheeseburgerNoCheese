@@ -6,44 +6,56 @@
             android:columnCount="8"
             android:rowCount="4"
             android:orientation="horizontal"
-            tools:context=".GridXMLActivity">
-    <ImageView
-        android:id="@+id/opp_card1"
-        android:layout_column="1"
-        android:layout_row="0"
-        android:layout_gravity="left|top"
-        android:text="Button"
-        android:src="@drawable/back_template"/>
+            tools:context=".MainActivity">
+    <!--
+        <ImageView
+            android:id="@+id/opp_card1"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitStart"
+            android:maxHeight="50px"
+            android:maxWidth="73px"
+            android:layout_gravity="left|top"
+            android:text="Button"
+            android:src="@drawable/back_template"/>
 
-    <ImageView
-        android:id="@+id/opp_card2"
-        android:layout_column="2"
-        android:layout_row="0"
-        android:layout_gravity="left|top"
-        android:text="Button"
-        android:src="@drawable/back_template"/>
+        <ImageView
+            android:id="@+id/opp_card2"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitStart"
+            android:maxHeight="50px"
+            android:maxWidth="73px"
+            android:layout_gravity="left|top"
+            android:text="Button"
+            android:src="@drawable/back_template"/>
 
-    <ImageView
-        android:id="@+id/opp_card3"
-        android:layout_column="3"
-        android:layout_row="0"
-        android:layout_gravity="left|top"
-        android:text="Button"
-        android:src="@drawable/back_template"/>
+        <ImageView
+            android:id="@+id/opp_card3"
+            android:layout_column="3"
+            android:layout_row="0"
+            android:layout_gravity="left|top"
+            android:text="Button"
+            android:src="@drawable/back_template"/>
 
-    <ImageView
-        android:id="@+id/opp_card4"
-        android:layout_column="4"
-        android:layout_row="0"
-        android:layout_gravity="left|top"
-        android:text="Button"
-        android:src="@drawable/back_template"/>
+        <ImageView
+            android:id="@+id/opp_card4"
+            android:layout_column="4"
+            android:layout_row="0"
+            android:layout_gravity="left|top"
+            android:text="Button"
+            android:src="@drawable/back_template"/>
 
-    <ImageView
-        android:id="@+id/opp_card5"
-        android:layout_column="5"
-        android:layout_row="0"
-        android:layout_gravity="left|top"
-        android:text="Button"
-        android:src="@drawable/back_template"/>
+        <ImageView
+            android:id="@+id/opp_card5"
+            android:layout_column="5"
+            android:layout_row="0"
+            android:layout_gravity="left|top"
+            android:text="Button"
+            android:src="@drawable/back_template"/>
+    -->
 </GridLayout>

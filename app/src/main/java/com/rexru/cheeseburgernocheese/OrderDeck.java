@@ -16,8 +16,9 @@ public class OrderDeck
 
     OrderDeck()
     {
-        imageView = new ImageView(MyApplication.getInstance());
-        imageView.setImageResource(R.drawable.back_template);
+        //imageView = new ImageView(MyApplication.getInstance());
+        //return R.drawable.back_template);
+        //imageView.getLayoutParams().height = 5;
 
         orderDeck = new ArrayList<>();
         orderDeck.add(new Order(OrderDetails.SMOOTHIE));
@@ -47,5 +48,15 @@ public class OrderDeck
     public Order draw()
     {
         return orderDeck.remove(0);
+    }
+
+    public void setImageView(ImageView imageV)
+    {
+        imageView = imageV;
+    }
+
+    public int getDrawableResource()
+    {
+        return R.drawable.back_template;
     }
 }

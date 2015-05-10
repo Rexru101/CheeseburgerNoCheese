@@ -17,6 +17,7 @@ public class Order
     List<Object> recipe;
     String name;
     ImageView imageView;
+    int drawableResource;
 
     Order(OrderDetails orderDetails)
     {
@@ -25,9 +26,20 @@ public class Order
         orderAbility = orderDetails.orderAbility;
         recipe = new ArrayList<>();
         recipe = orderDetails.recipe;
-        imageView = orderDetails.getImageView();
+        drawableResource = orderDetails.getDrawableResource();
+        //imageView.getLayoutParams().height = 10;
+        //imageView.requestLayout();
     }
 
+    public void setImageView(ImageView imageV)
+    {
+        imageView = imageV;
+    }
+
+    public int getDrawableResource()
+    {
+        return drawableResource;
+    }
 //    Order(OrderDetails orderDetails)
 //    {
 //        this.starValue = orderDetails.starValue;

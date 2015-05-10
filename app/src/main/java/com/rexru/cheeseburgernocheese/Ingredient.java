@@ -17,6 +17,7 @@ public class Ingredient
     IngredientAbility cardAbility;
     String name;
     ImageView imageView;
+    int drawableResource;
 /*
     Ingredient(int whichIngredient)
     {
@@ -37,7 +38,18 @@ public class Ingredient
         effectedCards = ingredientDetails.listOfCards;
         cardAbility = ingredientDetails.ability;
         ingredientDetail = ingredientDetails;
-        //imageView = ingredientDetails.imageView;
+        drawableResource = ingredientDetails.getDrawableResource();
+        //imageView = ingredientDetails.getImageView();
+    }
+
+    public void setImageView(ImageView imageV)
+    {
+        imageView = imageV;
+    }
+
+    public int getDrawableResource()
+    {
+        return drawableResource;
     }
 
     public boolean canSubstituteFor(Ingredient ingredient)

@@ -69,8 +69,6 @@ public class IngredientDeck
 //        }
 //        */
         //create deck
-        imageView = new ImageView(MyApplication.getInstance());
-        imageView.setImageResource(R.drawable.back_template);
         ingredientDeck = new ArrayList<>();
         Ingredient ingredient;
 
@@ -129,6 +127,16 @@ public class IngredientDeck
             }
         }
         Collections.shuffle(ingredientDeck);
+    }
+
+    public void setImageView(ImageView imageV)
+    {
+        imageView = imageV;
+    }
+
+    public int getDrawableResource()
+    {
+        return R.drawable.back_template;
     }
 
     public Ingredient draw()

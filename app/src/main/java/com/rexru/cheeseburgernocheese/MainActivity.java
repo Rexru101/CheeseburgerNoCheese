@@ -1,11 +1,13 @@
 package com.rexru.cheeseburgernocheese;
-
+//connection code and bitmap code taken from android dev website
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -20,6 +22,7 @@ import com.google.android.gms.games.multiplayer.realtime.RoomConfig;
 import com.google.android.gms.games.multiplayer.realtime.RoomStatusUpdateListener;
 import com.google.android.gms.games.multiplayer.realtime.RoomUpdateListener;
 import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
 import com.google.example.games.basegameutils.BaseGameUtils;
 
 import java.util.ArrayList;
@@ -59,7 +62,8 @@ public class MainActivity extends Activity
     public void startCNC()
     {
         //game = new Game(participants.get(0), participants.get(1));
-        game = new Game();
+        GridLayout gL = (GridLayout)findViewById(R.id.GridLayout1);
+        game = new Game(gL);
     }
     @Override
     protected void onStart() {

@@ -102,7 +102,6 @@ public enum IngredientDetails
     IngredientAbility ability;
     List<Ingredient> listOfCards;
     String name;
-    /*ImageView iView;*/
 
 //    IngredientDetails(int tradeCost, IngredientCategory category, IngredientAbility ability, List<Ingredient> list, String name)
 //    {
@@ -120,162 +119,358 @@ public enum IngredientDetails
         this.name = name;
     }
 
-    public ImageView getImageView()
+    public int getDrawableResource()
     {
-        ImageView imageView = new ImageView(MyApplication.getInstance());
-        listOfCards = new ArrayList<>();
-        listOfCards.add(new Ingredient(IngredientDetails.STRAWBERRY));
         switch (this)
         {
             case TRUFFLE_OIL:
-                imageView.setImageResource(R.drawable.oils_truffle);
+                return R.drawable.oils_truffle;
+            case BUTTER:
+                return R.drawable.oil_butter;
+            case OLIVE_OIL:
+                return R.drawable.oil_olive;
+            case GRAPESEED_OIL:
+                return R.drawable.oils_grapeseed;
+            case CHEESE:
+                return R.drawable.dairy_cheese;
+            case EGGS:
+                return R.drawable.dairy_eggs;
+            case MILK:
+                return R.drawable.dairy_milk;
+            case BACON:
+                return R.drawable.meat_bacon;
+            case CHICKEN:
+                return R.drawable.meat_chicken;
+            case STEAK:
+                return R.drawable.meat_steak;
+            case TOFURKY:
+                return R.drawable.meat_tofurky;
+            case CORN:
+                return R.drawable.grain_corn;
+            case LENTILS:
+                return R.drawable.grain_lentils;
+            case OATS:
+                return R.drawable.grain_oats;
+            case PASTA:
+                return R.drawable.grain_pasta;
+            case QUINOA:
+                return R.drawable.grain_quinoa;
+            case RICE:
+                return R.drawable.grain_rice;
+            case WHOLE_WHEAT_PASTA:
+                return R.drawable.grain_whole_wheat;
+            case ORANGE:
+                return R.drawable.fruit_orange;
+            case POMEGRANATE:
+                return R.drawable.fruit_pomegranite;
+            case STRAWBERRY:
+                return R.drawable.fruit_strawberry;
+            case TOMATO:
+                return R.drawable.fruit_tomato;
+            case APPLE:
+                return R.drawable.fruit_apple;
+            case AVOCADO:
+                return R.drawable.fruit_avocado;
+            case BANANA:
+                return R.drawable.fruit_banana;
+            case BLUEBERRY:
+                return R.drawable.fruit_blueberry;
+            case GRAPES:
+                return R.drawable.fruit_grape;
+            case LEMON:
+                return R.drawable.fruit_lemon;
+            case LIME:
+                return R.drawable.fruit_lime;
+            case ASPARAGUS:
+                return R.drawable.veg_asparagus;
+            case BROCCOLI:
+                return R.drawable.veg_broccoli;
+            case CARROTS:
+                return R.drawable.veg_carrots;
+            case LETTUCE:
+                return R.drawable.veg_lettuce;
+            case MUSHROOM:
+                return R.drawable.veg_mushroom;
+            case SPINACH:
+                return R.drawable.veg_spinach;
+            case VEGGIE_PATTY:
+                return R.drawable.veg_veggie_patty;
+            default:
+                return -1;
+        }
+    }
+
+    public void createListOfEffectedCards()
+    {
+        listOfCards = new ArrayList<>();
+        switch (this)
+        {
+            case TRUFFLE_OIL:
                 listOfCards.addAll(Game.listOfOrderedIngredients);
                 break;
             case BUTTER:
-                imageView.setImageResource(R.drawable.oil_butter);
                 listOfCards.addAll(Game.listOfOrderedIngredients);
                 break;
             case OLIVE_OIL:
-                imageView.setImageResource(R.drawable.oil_olive);
                 listOfCards.addAll(Game.listOfOrderedIngredients);
                 break;
             case GRAPESEED_OIL:
-                imageView.setImageResource(R.drawable.oils_grapeseed);
                 listOfCards.addAll(Game.listOfOrderedIngredients);
                 break;
             case CHEESE:
-                imageView.setImageResource(R.drawable.dairy_cheese);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(4,5));
                 break;
             case EGGS:
-                imageView.setImageResource(R.drawable.dairy_eggs);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(7,11));
                 break;
             case MILK:
-                imageView.setImageResource(R.drawable.dairy_milk);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(7,11));
                 break;
             case BACON:
-                imageView.setImageResource(R.drawable.meat_bacon);
                 listOfCards.addAll(Game.listOfOrderedIngredients);
                 break;
             case CHICKEN:
-                imageView.setImageResource(R.drawable.meat_chicken);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(30,31));
                 break;
             case STEAK:
-                imageView.setImageResource(R.drawable.meat_steak);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(9,10));
                 break;
             case TOFURKY:
-                imageView.setImageResource(R.drawable.meat_tofurky);
                 listOfCards.addAll(Game.otherListOfOrderedIngredients.subList(0,14));//grains + vegetables
                 break;
             case CORN:
-                imageView.setImageResource(R.drawable.grain_corn);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(29,36));
                 break;
             case LENTILS:
-                imageView.setImageResource(R.drawable.grain_lentils);
                 listOfCards.addAll(Game.otherListOfOrderedIngredients.subList(14,25));//meats + vegetables
                 break;
             case OATS:
-                imageView.setImageResource(R.drawable.grain_oats);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(16,17));
                 break;
             case PASTA:
-                imageView.setImageResource(R.drawable.grain_pasta);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(17,18));
                 break;
             case QUINOA:
-                imageView.setImageResource(R.drawable.grain_quinoa);
                 listOfCards.addAll(Game.otherListOfOrderedIngredients.subList(25,30));
                 break;
             case RICE:
-                imageView.setImageResource(R.drawable.grain_rice);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(16,17));
                 break;
             case WHOLE_WHEAT_PASTA:
-                imageView.setImageResource(R.drawable.grain_whole_wheat);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(14,15));
                 break;
             case ORANGE:
-                imageView.setImageResource(R.drawable.fruit_orange);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(27,29));
                 break;
             case POMEGRANATE:
-                imageView.setImageResource(R.drawable.fruit_pomegranite);
                 listOfCards.addAll(Game.listOfOrderedIngredients);
                 break;
             case STRAWBERRY:
-                imageView.setImageResource(R.drawable.fruit_strawberry);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(20,21));
                 break;
             case TOMATO:
-                imageView.setImageResource(R.drawable.fruit_tomato);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(29,36));
                 break;
             case APPLE:
-                imageView.setImageResource(R.drawable.fruit_apple);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(22,23));
                 break;
             case AVOCADO:
-                imageView.setImageResource(R.drawable.fruit_avocado);
                 listOfCards.addAll(Game.listOfOrderedIngredients);
                 break;
             case BANANA:
-                imageView.setImageResource(R.drawable.fruit_banana);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(24,25));
                 break;
             case BLUEBERRY:
-                imageView.setImageResource(R.drawable.fruit_blueberry);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(25,26));
                 break;
             case GRAPES:
-                imageView.setImageResource(R.drawable.fruit_grape);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(26,27));
                 break;
             case LEMON:
-                imageView.setImageResource(R.drawable.fruit_lemon);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(28,29));
                 break;
             case LIME:
-                imageView.setImageResource(R.drawable.fruit_lime);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(27,28));
                 break;
             case ASPARAGUS:
-                imageView.setImageResource(R.drawable.veg_asparagus);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(29,30));
                 break;
             case BROCCOLI:
-                imageView.setImageResource(R.drawable.veg_broccoli);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(8,9));
                 break;
             case CARROTS:
-                imageView.setImageResource(R.drawable.veg_carrots);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(31,32));
                 break;
             case LETTUCE:
-                imageView.setImageResource(R.drawable.veg_lettuce);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(32,33));
                 break;
             case MUSHROOM:
-                imageView.setImageResource(R.drawable.veg_mushroom);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(0,1));
                 break;
             case SPINACH:
-                imageView.setImageResource(R.drawable.veg_spinach);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(4,7));
                 break;
             case VEGGIE_PATTY:
-                imageView.setImageResource(R.drawable.veg_veggie_patty);
                 listOfCards.addAll(Game.listOfOrderedIngredients.subList(7,11));
                 break;
-            default:
-                //System.out.print("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
-                //listOfCards.add(new Ingredient(IngredientDetails.STRAWBERRY));
-                break;
         }
-        return imageView;
     }
+//    public ImageView getImageView()
+//    {
+//        ImageView imageView = new ImageView(MyApplication.getInstance());
+//        listOfCards = new ArrayList<>();
+//        listOfCards.add(new Ingredient(IngredientDetails.STRAWBERRY));
+//        switch (this)
+//        {
+//            case TRUFFLE_OIL:
+//                imageView.setImageResource(R.drawable.oils_truffle);
+//                listOfCards.addAll(Game.listOfOrderedIngredients);
+//                break;
+//            case BUTTER:
+//                imageView.setImageResource(R.drawable.oil_butter);
+//                listOfCards.addAll(Game.listOfOrderedIngredients);
+//                break;
+//            case OLIVE_OIL:
+//                imageView.setImageResource(R.drawable.oil_olive);
+//                listOfCards.addAll(Game.listOfOrderedIngredients);
+//                break;
+//            case GRAPESEED_OIL:
+//                imageView.setImageResource(R.drawable.oils_grapeseed);
+//                listOfCards.addAll(Game.listOfOrderedIngredients);
+//                break;
+//            case CHEESE:
+//                imageView.setImageResource(R.drawable.dairy_cheese);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(4,5));
+//                break;
+//            case EGGS:
+//                imageView.setImageResource(R.drawable.dairy_eggs);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(7,11));
+//                break;
+//            case MILK:
+//                imageView.setImageResource(R.drawable.dairy_milk);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(7,11));
+//                break;
+//            case BACON:
+//                imageView.setImageResource(R.drawable.meat_bacon);
+//                listOfCards.addAll(Game.listOfOrderedIngredients);
+//                break;
+//            case CHICKEN:
+//                imageView.setImageResource(R.drawable.meat_chicken);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(30,31));
+//                break;
+//            case STEAK:
+//                imageView.setImageResource(R.drawable.meat_steak);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(9,10));
+//                break;
+//            case TOFURKY:
+//                imageView.setImageResource(R.drawable.meat_tofurky);
+//                listOfCards.addAll(Game.otherListOfOrderedIngredients.subList(0,14));//grains + vegetables
+//                break;
+//            case CORN:
+//                imageView.setImageResource(R.drawable.grain_corn);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(29,36));
+//                break;
+//            case LENTILS:
+//                imageView.setImageResource(R.drawable.grain_lentils);
+//                listOfCards.addAll(Game.otherListOfOrderedIngredients.subList(14,25));//meats + vegetables
+//                break;
+//            case OATS:
+//                imageView.setImageResource(R.drawable.grain_oats);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(16,17));
+//                break;
+//            case PASTA:
+//                imageView.setImageResource(R.drawable.grain_pasta);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(17,18));
+//                break;
+//            case QUINOA:
+//                imageView.setImageResource(R.drawable.grain_quinoa);
+//                listOfCards.addAll(Game.otherListOfOrderedIngredients.subList(25,30));
+//                break;
+//            case RICE:
+//                imageView.setImageResource(R.drawable.grain_rice);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(16,17));
+//                break;
+//            case WHOLE_WHEAT_PASTA:
+//                imageView.setImageResource(R.drawable.grain_whole_wheat);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(14,15));
+//                break;
+//            case ORANGE:
+//                imageView.setImageResource(R.drawable.fruit_orange);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(27,29));
+//                break;
+//            case POMEGRANATE:
+//                imageView.setImageResource(R.drawable.fruit_pomegranite);
+//                listOfCards.addAll(Game.listOfOrderedIngredients);
+//                break;
+//            case STRAWBERRY:
+//                imageView.setImageResource(R.drawable.fruit_strawberry);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(20,21));
+//                break;
+//            case TOMATO:
+//                imageView.setImageResource(R.drawable.fruit_tomato);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(29,36));
+//                break;
+//            case APPLE:
+//                imageView.setImageResource(R.drawable.fruit_apple);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(22,23));
+//                break;
+//            case AVOCADO:
+//                imageView.setImageResource(R.drawable.fruit_avocado);
+//                listOfCards.addAll(Game.listOfOrderedIngredients);
+//                break;
+//            case BANANA:
+//                imageView.setImageResource(R.drawable.fruit_banana);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(24,25));
+//                break;
+//            case BLUEBERRY:
+//                imageView.setImageResource(R.drawable.fruit_blueberry);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(25,26));
+//                break;
+//            case GRAPES:
+//                imageView.setImageResource(R.drawable.fruit_grape);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(26,27));
+//                break;
+//            case LEMON:
+//                imageView.setImageResource(R.drawable.fruit_lemon);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(28,29));
+//                break;
+//            case LIME:
+//                imageView.setImageResource(R.drawable.fruit_lime);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(27,28));
+//                break;
+//            case ASPARAGUS:
+//                imageView.setImageResource(R.drawable.veg_asparagus);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(29,30));
+//                break;
+//            case BROCCOLI:
+//                imageView.setImageResource(R.drawable.veg_broccoli);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(8,9));
+//                break;
+//            case CARROTS:
+//                imageView.setImageResource(R.drawable.veg_carrots);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(31,32));
+//                break;
+//            case LETTUCE:
+//                imageView.setImageResource(R.drawable.veg_lettuce);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(32,33));
+//                break;
+//            case MUSHROOM:
+//                imageView.setImageResource(R.drawable.veg_mushroom);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(0,1));
+//                break;
+//            case SPINACH:
+//                imageView.setImageResource(R.drawable.veg_spinach);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(4,7));
+//                break;
+//            case VEGGIE_PATTY:
+//                imageView.setImageResource(R.drawable.veg_veggie_patty);
+//                listOfCards.addAll(Game.listOfOrderedIngredients.subList(7,11));
+//                break;
+//            default:
+//                //System.out.print("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+//                //listOfCards.add(new Ingredient(IngredientDetails.STRAWBERRY));
+//                break;
+//        }
+//        return imageView;
+//    }
 }

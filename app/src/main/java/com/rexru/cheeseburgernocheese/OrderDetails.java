@@ -109,75 +109,126 @@ public enum OrderDetails
         recipe.add(ingredient2);
     }
 
-    public ImageView getImageView()
+    public int getDrawableResource()
     {
-        ImageView imageView = new ImageView(MyApplication.getInstance());
         switch (this)
         {
             case SMOOTHIE:
-                imageView.setImageResource(R.drawable.recipe_01_smoothie);
-                break;
+                return R.drawable.recipe_01_smoothie;
             case VEGGIE_PILAF:
-                imageView.setImageResource(R.drawable.recipe_02_veggie_pilaf);
-                break;
+                return R.drawable.recipe_02_veggie_pilaf;
             case GUACAMOLE:
-                imageView.setImageResource(R.drawable.recipe_03_guac);
-                break;
+                return R.drawable.recipe_03_guac;
             case PASTA_WITH_SAUCE:
-                imageView.setImageResource(R.drawable.recipe_04_pasta_sauce);
-                break;
+                return R.drawable.recipe_04_pasta_sauce;
             case FRUIT_SALAD:
-                imageView.setImageResource(R.drawable.recipe_05_fruit_salad);
-                break;
+                return R.drawable.recipe_05_fruit_salad;
             case VEGGIE_KEBAB:
-                imageView.setImageResource(R.drawable.recipe_06_veggie_kebab);
-                break;
+                return R.drawable.recipe_06_veggie_kebab;
             case WILD_RICE:
-                imageView.setImageResource(R.drawable.recipe_07_wild_rice);
-                break;
+                return R.drawable.recipe_07_wild_rice;
             case VEGGIE_ROLL:
-                imageView.setImageResource(R.drawable.recipe_08_veggie_roll);
-                break;
+                return R.drawable.recipe_08_veggie_roll;
             case OATMEAL_WITH_FRUIT:
-                imageView.setImageResource(R.drawable.recipe_09_oatmeal_fruit);
-                break;
+                return R.drawable.recipe_09_oatmeal_fruit;
             case SALSA_AND_CHIPS:
-                imageView.setImageResource(R.drawable.recipe_10_salsa_chips);
-                break;
+                return R.drawable.recipe_10_salsa_chips;
             case STEAK_AND_MASH:
-                imageView.setImageResource(R.drawable.recipe_11_steak_mash);
-                break;
+                return R.drawable.recipe_11_steak_mash;
             case VEGGIE_FRIED_RICE:
-                imageView.setImageResource(R.drawable.recipe_12_veggie_fried_rice);
-                break;
+                return R.drawable.recipe_12_veggie_fried_rice;
             case LETTUCE_WRAP:
-                imageView.setImageResource(R.drawable.recipe_13_lettuce_wrap);
-                break;
+                return R.drawable.recipe_13_lettuce_wrap;
             case CHICKEN_STIR_FRY:
-                imageView.setImageResource(R.drawable.recipe_14_chicken_stir_fry);
-                break;
+                return R.drawable.recipe_14_chicken_stir_fry;
             case RICE_PUDDING:
-                imageView.setImageResource(R.drawable.recipe_15_rice_pudding);
-                break;
+                return R.drawable.recipe_15_rice_pudding;
             case CREAMY_SPINACH_PASTA:
-                imageView.setImageResource(R.drawable.recipe_16_creamy_spinach_pasta);
-                break;
+                return R.drawable.recipe_16_creamy_spinach_pasta;
             case CAESAR_SALAD:
-                imageView.setImageResource(R.drawable.recipe_17_cesar_salad);
-                break;
+                return R.drawable.recipe_17_cesar_salad;
             case CARROT_CAKE:
-                imageView.setImageResource(R.drawable.recipe_18_carrot_cake);
-                break;
+                return R.drawable.recipe_18_carrot_cake;
             case OMELETTE:
-                imageView.setImageResource(R.drawable.recipe_19_omelette);
-                break;
+                return R.drawable.recipe_19_omelette;
             case RICE_KRISPIE_TREAT:
-                imageView.setImageResource(R.drawable.recipe_20_rice_krispie);
-                break;
+                return R.drawable.recipe_20_rice_krispie;
             case SPAGHETTI_AND_MEATBALLS:
-                imageView.setImageResource(R.drawable.recipe_21_spaghetti);
-                break;
+                return R.drawable.recipe_21_spaghetti;
+            default:
+                return -1;
         }
-        return imageView;
     }
+
+//    public ImageView getImageView()
+//    {
+//        ImageView imageView = new ImageView(MyApplication.getInstance());
+//        switch (this)
+//        {
+//            case SMOOTHIE:
+//                imageView.setImageResource(R.drawable.recipe_01_smoothie);
+//                break;
+//            case VEGGIE_PILAF:
+//                imageView.setImageResource(R.drawable.recipe_02_veggie_pilaf);
+//                break;
+//            case GUACAMOLE:
+//                imageView.setImageResource(R.drawable.recipe_03_guac);
+//                break;
+//            case PASTA_WITH_SAUCE:
+//                imageView.setImageResource(R.drawable.recipe_04_pasta_sauce);
+//                break;
+//            case FRUIT_SALAD:
+//                imageView.setImageResource(R.drawable.recipe_05_fruit_salad);
+//                break;
+//            case VEGGIE_KEBAB:
+//                imageView.setImageResource(R.drawable.recipe_06_veggie_kebab);
+//                break;
+//            case WILD_RICE:
+//                imageView.setImageResource(R.drawable.recipe_07_wild_rice);
+//                break;
+//            case VEGGIE_ROLL:
+//                imageView.setImageResource(R.drawable.recipe_08_veggie_roll);
+//                break;
+//            case OATMEAL_WITH_FRUIT:
+//                imageView.setImageResource(R.drawable.recipe_09_oatmeal_fruit);
+//                break;
+//            case SALSA_AND_CHIPS:
+//                imageView.setImageResource(R.drawable.recipe_10_salsa_chips);
+//                break;
+//            case STEAK_AND_MASH:
+//                imageView.setImageResource(R.drawable.recipe_11_steak_mash);
+//                break;
+//            case VEGGIE_FRIED_RICE:
+//                imageView.setImageResource(R.drawable.recipe_12_veggie_fried_rice);
+//                break;
+//            case LETTUCE_WRAP:
+//                imageView.setImageResource(R.drawable.recipe_13_lettuce_wrap);
+//                break;
+//            case CHICKEN_STIR_FRY:
+//                imageView.setImageResource(R.drawable.recipe_14_chicken_stir_fry);
+//                break;
+//            case RICE_PUDDING:
+//                imageView.setImageResource(R.drawable.recipe_15_rice_pudding);
+//                break;
+//            case CREAMY_SPINACH_PASTA:
+//                imageView.setImageResource(R.drawable.recipe_16_creamy_spinach_pasta);
+//                break;
+//            case CAESAR_SALAD:
+//                imageView.setImageResource(R.drawable.recipe_17_cesar_salad);
+//                break;
+//            case CARROT_CAKE:
+//                imageView.setImageResource(R.drawable.recipe_18_carrot_cake);
+//                break;
+//            case OMELETTE:
+//                imageView.setImageResource(R.drawable.recipe_19_omelette);
+//                break;
+//            case RICE_KRISPIE_TREAT:
+//                imageView.setImageResource(R.drawable.recipe_20_rice_krispie);
+//                break;
+//            case SPAGHETTI_AND_MEATBALLS:
+//                imageView.setImageResource(R.drawable.recipe_21_spaghetti);
+//                break;
+//        }
+//        return imageView;
+//    }
 }
