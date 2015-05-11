@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
@@ -48,15 +49,26 @@ public class MainActivity extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*test
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
-                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                .build();
-        */
-        startCNC();
+        Button button = new Button(this);
+        button.setText("Start Game");
+        ((GridLayout)findViewById(R.id.GridLayout1)).addView(button);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                /*test
+                googleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
+                    .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                    .build();
+                */
+                v.setVisibility(View.GONE);
+                startCNC();
+            }
+        });
     }
 
     public void startCNC()

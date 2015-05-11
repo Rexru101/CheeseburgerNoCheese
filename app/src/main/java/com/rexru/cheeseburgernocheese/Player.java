@@ -13,10 +13,14 @@ public class Player
     //Cursor cursor;
     List<Ingredient> hand;
     Participant participant;
+    List<Order> completedOrders;
+    int score;
 
     Player(Participant participant)
     {
         this.participant = participant;
+        completedOrders = new ArrayList<>();
+        score = 0;
     }
 
     Player()//test
@@ -67,6 +71,9 @@ public class Player
 
             }
         }
+
+        completedOrders.add(order);
+        score += order.starValue;
         return false;
     }
 
