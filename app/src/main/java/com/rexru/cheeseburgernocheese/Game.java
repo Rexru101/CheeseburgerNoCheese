@@ -36,6 +36,7 @@ public class Game
     //Point[] indicesOfImageViews;
     int indexNumberOfPoints = 0;
 
+    List<ImageView> selectedViews = new ArrayList<>();//train
     //Game(Participant participant1, Participant participant2)
     Game(final GridLayout gridLayout)
     {
@@ -145,8 +146,13 @@ public class Game
             @Override
             public void onClick(View v)
             {
-                if (allowedToTrade)
-                    ;//trade
+                if (allowedToTrade)//train
+                {
+                    int sumOfTradeCosts = 0;//trade
+                    for (ImageView viewInSelectedViews: selectedViews)
+                        sumOfTradeCosts += ((Ingredient)(viewInSelectedViews.getTag())).tradeCost;
+                    if 
+                }
                 else
                     ;//complete order
             }
@@ -254,8 +260,10 @@ public class Game
         public boolean onTouch(View v, MotionEvent event)
         {
             if (v.getTag().getClass().equals(Ingredient.class))//ingredient
-            {
-                ((ImageView)v).setAlpha(0.25f);
+            {//train
+                ImageView tempView = ((ImageView)v);
+                tempView.setAlpha(0.25f);
+                selectedViews.add(tempView);
             }
             else if (v.getTag().getClass().equals(Order.class))//order
             {
