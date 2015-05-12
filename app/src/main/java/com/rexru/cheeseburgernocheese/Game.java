@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class Game
 {
+    //does not check whether the ingredient selected/effected is from hand or store
+    //on completed orders, hand only fills to what was used instead of 5
     static List<Ingredient> listOfOrderedIngredients;
     static List<Ingredient> otherListOfOrderedIngredients;
 
@@ -152,11 +154,11 @@ public class Game
             @Override
             public void onClick(View v)
             {
-                if (allowedToTrade)
+                if (allowedToTrade)//trade
                 {
                     if (selectedViews.size() > 0 && effectedViews.size() > 0)
                     {
-                        int sumOfTradeCosts = 0;//trade
+                        int sumOfTradeCosts = 0;
                         for (ImageView viewInSelectedViews : selectedViews)
                             sumOfTradeCosts += ((Ingredient) viewInSelectedViews.getTag()).tradeCost;
                         if (sumOfTradeCosts == ((Ingredient) effectedViews.get(0).getTag()).tradeCost)
@@ -173,11 +175,25 @@ public class Game
                                     //listOfPlayers.get(0).hand.set(listOfPlayers.get(0).hand.indexOf(tempIngredient), null);
                                     listOfPlayers.get(0).hand.remove(tempIngredient);
                                 }
-                                effectedViews.get(0).getDrawable().clearColorFilter();
                                 Ingredient tempIngredient = ingredientDeck.draw();
+                                store.store.add(tempIngredient);
+                                listOfPlayers.get(0).hand.add((Ingredient)effectedViews.get(0).getTag());
+                                //listOfPlayers.get(0).hand.indexOf(effectedViews.get(0).getTag());
+                                selectedViews.get(0).setTag(listOfPlayers.get(0).hand.get(listOfPlayers.get(0).hand.size() - 1));
+                                selectedViews.get(0).setImageBitmap(decodeSampledBitmapFromResource(res, ((Ingredient)effectedViews.get(0).getTag())
+                                    .getDrawableResource(), 125, 125));
                                 effectedViews.get(0).setTag(tempIngredient);
                                 effectedViews.get(0).setImageBitmap(decodeSampledBitmapFromResource(res, tempIngredient.getDrawableResource(), 125, 125));
-                                listOfPlayers.get(0).hand.add((Ingredient)effectedViews.get(0).getTag());
+                                for (ImageView viewInSelectedView: selectedViews)
+                                {
+                                    viewInSelectedView.setAlpha(1f);
+                                }
+                                for (ImageView viewInEffectedView: effectedViews)
+                                {
+                                    viewInEffectedView.clearColorFilter();
+                                }
+                                effectedViews.clear();
+                                selectedViews.clear();
                             }
                             else//trading one for one
                             {
@@ -195,6 +211,7 @@ public class Game
                                 selectedViews.clear();
                             }
                             allowedToTrade = false;
+                            //selectEffectedViews = false;
                         }
                         else//not equal. reset everything
                         {
@@ -202,6 +219,8 @@ public class Game
                                 viewInEffectView.getDrawable().clearColorFilter();
                             for (ImageView viewInSelectedView: selectedViews)
                                 viewInSelectedView.setAlpha(1f);
+                            effectedViews.clear();
+                            selectedViews.clear();
                             allowedToTrade = true;
                         }
                         selectEffectedViews = false;
@@ -212,8 +231,68 @@ public class Game
                         selectEffectedViews = true;
                     }
                 }
-                else
-                    ;//complete order
+                else//complete order
+                {
+                    if (selectedViews.size() > 0 && effectedViews.size() > 0)
+                    {
+                        List<Ingredient> tempIngredList = new ArrayList<>();
+                        for (ImageView viewInSelected: selectedViews)
+                             tempIngredList.add((Ingredient)viewInSelected.getTag());
+                        if (listOfPlayers.get(0).completeOrder(tempIngredList, (Order)effectedViews.get(0).getTag()))
+                        {
+                            for (Ingredient ingredientGoingToTrash: tempIngredList)
+                            {
+                                trash.addToTrash(ingredientGoingToTrash);
+                                listOfPlayers.get(0).hand.remove(ingredientGoingToTrash);
+                                listOfPlayers.get(0).addHand(ingredientDeck.draw());
+                                selectedViews.get(0).setTag(listOfPlayers.get(0).hand.get(listOfPlayers.get(0).hand.size() - 1));
+                                selectedViews.get(0).setImageBitmap(decodeSampledBitmapFromResource(res, listOfPlayers.get(0).hand.get(listOfPlayers.get(0)
+                                    .hand.size() - 1).getDrawableResource(), 125, 125));
+                                selectedViews.get(0).setAlpha(1f);
+                                selectedViews.remove(0);
+                            }
+                            orderArea.activeOrders.remove((Order)effectedViews.get(0).getTag());
+                            orderArea.getMoreOrders(orderDeck);
+                            effectedViews.get(0).setTag(orderArea.activeOrders.get(orderArea.activeOrders.size() - 1));
+                            effectedViews.get(0).setImageBitmap(decodeSampledBitmapFromResource(res, orderArea.activeOrders.get(orderArea
+                                .activeOrders.size() - 1).getDrawableResource(), 125, 125));
+
+                            //next turn
+                            allowedToTrade = true;
+                            //for (int i = 0; i < 5; i++)
+                            int i = 0;
+                            for (ImageView imageViewInHand: handView)
+                            {
+                                //imageViewInHand.setTag(listOfPlayers.get(1).hand.get(i));
+                                //imageViewInHand.setImageBitmap(decodeSampledBitmapFromResource(res, listOfPlayers.get(1).hand.get(i).drawableResource, 125, 125));
+                                //ImageView temp = (ImageView) handView;
+                                //ImageView temp = (ImageView) gridLayout.findViewWithTag(listOfPlayers.get(0).hand.get(i));
+                                if (listOfPlayers.get(1).hand.size() <= i)
+                                {
+                                    imageViewInHand.setImageBitmap(decodeSampledBitmapFromResource(res, 0, 125, 125));//.setTag(i + 10,);//set null tag
+                                }
+                                else
+                                {
+                                    imageViewInHand.setTag(listOfPlayers.get(1).hand.get(i));
+                                    imageViewInHand.setImageBitmap(decodeSampledBitmapFromResource(res, listOfPlayers.get(1).hand.get(i).drawableResource, 125, 125));
+                                }
+                                i++;
+                            }
+                            player1Turn = !player1Turn;
+                            listOfPlayers.add(listOfPlayers.get(0));
+                            listOfPlayers.remove(0);
+                        }
+                        else
+                        {
+                            for (ImageView viewInSelected: selectedViews)
+                                viewInSelected.setAlpha(1f);
+                        }
+                        System.out.println("CLEAR COLOR FILTER");
+                        effectedViews.get(0).getDrawable().clearColorFilter();
+                        effectedViews.clear();
+                        selectedViews.clear();
+                    }
+                }
             }
         });
         next.setOnClickListener(new View.OnClickListener()
@@ -225,6 +304,13 @@ public class Game
                     allowedToTrade = false;
                 else
                 {
+                    for (ImageView viewInEffectView: effectedViews)
+                        viewInEffectView.getDrawable().clearColorFilter();
+                    for (ImageView viewInSelectedView: selectedViews)
+                        viewInSelectedView.setAlpha(1f);
+                    effectedViews.clear();
+                    selectedViews.clear();
+
                     allowedToTrade = true;
                     //for (int i = 0; i < 5; i++)
                     int i = 0;
@@ -234,7 +320,7 @@ public class Game
                         //imageViewInHand.setImageBitmap(decodeSampledBitmapFromResource(res, listOfPlayers.get(1).hand.get(i).drawableResource, 125, 125));
                         //ImageView temp = (ImageView) handView;
                         //ImageView temp = (ImageView) gridLayout.findViewWithTag(listOfPlayers.get(0).hand.get(i));
-                        if (listOfPlayers.get(1).hand.size() == i)
+                        if (listOfPlayers.get(1).hand.size() <= i)
                         {
                             imageViewInHand.setImageBitmap(decodeSampledBitmapFromResource(res, 0, 125, 125));//.setTag(i + 10,);//set null tag
                         }
@@ -332,24 +418,51 @@ public class Game
         @Override
         public boolean onTouch(View v, MotionEvent event)
         {
+            ImageView tempView = ((ImageView) v);
             if (v.getTag().getClass().equals(Ingredient.class))//ingredient
             {
-                ImageView tempView = ((ImageView) v);//set tags for ingredients in hand to prevent ingreds in the store from getting change alpha
                 if (!selectEffectedViews)
                 {
-                    tempView.setAlpha(0.25f);
-                    selectedViews.add(tempView);
+                    if (!selectedViews.contains(tempView))
+                    {
+                        tempView.setAlpha(0.25f);
+                        selectedViews.add(tempView);
+                    }
+                    else
+                    {
+                        tempView.setAlpha(1f);
+                        selectedViews.remove(tempView);
+                    }
                 }
                 else
                 {
-                    tempView.getDrawable().setColorFilter(Color.rgb(32,128,32), PorterDuff.Mode.MULTIPLY);
-                    effectedViews.add(tempView);
+                    if (effectedViews.size() < 1)
+                    {
+                        tempView.getDrawable().setColorFilter(Color.rgb(64, 128, 64), PorterDuff.Mode.MULTIPLY);
+                        effectedViews.add(tempView);
+                    }
+                    else
+                    {
+                        effectedViews.get(0).getDrawable().clearColorFilter();
+                        effectedViews.clear();
+                    }
                 }
             }
             else if (v.getTag().getClass().equals(Order.class))//order
             {
-                System.out.println(((Order)v.getTag()).name);
-                System.out.println(((Order)v.getTag()).starValue);
+                if (!allowedToTrade)
+                {
+                    if (effectedViews.size() < 1)
+                    {
+                        tempView.getDrawable().setColorFilter(Color.rgb(128, 64, 64), PorterDuff.Mode.MULTIPLY);
+                        effectedViews.add(tempView);
+                    }
+                    else
+                    {
+                        effectedViews.get(0).getDrawable().clearColorFilter();
+                        effectedViews.clear();
+                    }
+                }
             }
             else if (v.getTag().getClass().equals(IngredientDeck.class))//ingredientDeck
             {
@@ -362,25 +475,4 @@ public class Game
             return false;
         }
     }
-//    public void setUpBitmap(int imageID, GridLayout gridLayout)
-//    {
-//        //Resources res = MyApplication.getInstance().getResources();
-//        BitmapFactory.decodeResource(res, imageID, options);
-//        int imageHeight = options.outHeight;
-//        int imageWidth = options.outWidth;
-//        //String imageType = options.outMimeType;
-//        calculateInSampleSize(options, imageWidth, imageHeight);
-//        ImageView imageView = new ImageView(MyApplication.getInstance());
-//        imageView.setImageBitmap(decodeSampledBitmapFromResource(res, imageID, 125, 125));
-//        GridLayout.LayoutParams param = new GridLayout.LayoutParams();
-////        param.height = GridLayout.LayoutParams.WRAP_CONTENT;
-////        param.width = GridLayout.LayoutParams.WRAP_CONTENT;
-//        param.rightMargin = 5;
-//        param.topMargin = 5;
-//        imageView.setLayoutParams(param);
-//
-////        imageView.setTag(indicesOfImageViews[indexNumberOfPoints]);
-////        indexNumberOfPoints++;
-//
-//    }
 }

@@ -16,6 +16,7 @@ public class Trash
     Trash()
     {
         imageView = new ImageView(MyApplication.getInstance());
+        imageView.setImageResource(0);
     }
 
     public void addToTrash(Ingredient ingredient)
