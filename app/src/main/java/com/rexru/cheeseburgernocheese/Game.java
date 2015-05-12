@@ -3,6 +3,8 @@ package com.rexru.cheeseburgernocheese;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +38,11 @@ public class Game
     //Point[] indicesOfImageViews;
     int indexNumberOfPoints = 0;
 
-    List<ImageView> selectedViews = new ArrayList<>();//train
+    List<ImageView> selectedViews = new ArrayList<>();
+    List<ImageView> effectedViews = new ArrayList<>();
+    List<ImageView> handView = new ArrayList<>();
+    boolean selectEffectedViews = false;
+
     //Game(Participant participant1, Participant participant2)
     Game(final GridLayout gridLayout)
     {
@@ -146,12 +152,65 @@ public class Game
             @Override
             public void onClick(View v)
             {
-                if (allowedToTrade)//train
+                if (allowedToTrade)
                 {
-                    int sumOfTradeCosts = 0;//trade
-                    for (ImageView viewInSelectedViews: selectedViews)
-                        sumOfTradeCosts += ((Ingredient)(viewInSelectedViews.getTag())).tradeCost;
-                    if 
+                    if (selectedViews.size() > 0 && effectedViews.size() > 0)
+                    {
+                        int sumOfTradeCosts = 0;//trade
+                        for (ImageView viewInSelectedViews : selectedViews)
+                            sumOfTradeCosts += ((Ingredient) viewInSelectedViews.getTag()).tradeCost;
+                        if (sumOfTradeCosts == ((Ingredient) effectedViews.get(0).getTag()).tradeCost)
+                        {
+                            if (selectedViews.size() > 1)//trading multiple for one
+                            {
+                                //for (int i = 0; i < selectedViews.size(); i++)
+                                for (ImageView selectedViewIngredients: selectedViews)
+                                {
+                                    Ingredient tempIngredient = (Ingredient) selectedViewIngredients.getTag();
+                                    selectedViewIngredients.setImageResource(0);
+                                    selectedViewIngredients.setTag(null);
+                                    trash.addToTrash(tempIngredient);
+                                    //listOfPlayers.get(0).hand.set(listOfPlayers.get(0).hand.indexOf(tempIngredient), null);
+                                    listOfPlayers.get(0).hand.remove(tempIngredient);
+                                }
+                                effectedViews.get(0).getDrawable().clearColorFilter();
+                                Ingredient tempIngredient = ingredientDeck.draw();
+                                effectedViews.get(0).setTag(tempIngredient);
+                                effectedViews.get(0).setImageBitmap(decodeSampledBitmapFromResource(res, tempIngredient.getDrawableResource(), 125, 125));
+                                listOfPlayers.get(0).hand.add((Ingredient)effectedViews.get(0).getTag());
+                            }
+                            else//trading one for one
+                            {
+                                Ingredient ingredientFromStore = ((Ingredient) effectedViews.get(0).getTag());
+                                Ingredient ingredientFromHand = ((Ingredient) selectedViews.get(0).getTag());
+                                effectedViews.get(0).setTag(ingredientFromHand);
+                                effectedViews.get(0).setImageBitmap(decodeSampledBitmapFromResource(res, ingredientFromHand.getDrawableResource(), 125, 125));
+                                selectedViews.get(0).setTag(ingredientFromStore);
+                                selectedViews.get(0).setImageBitmap(decodeSampledBitmapFromResource(res, ingredientFromStore.getDrawableResource(), 125, 125));
+                                effectedViews.get(0).setAlpha(1f);
+                                selectedViews.get(0).setAlpha(1f);
+                                store.store.set(store.store.indexOf(ingredientFromStore), ingredientFromHand);
+                                listOfPlayers.get(0).hand.set(listOfPlayers.get(0).hand.indexOf(ingredientFromHand), ingredientFromStore);
+                                effectedViews.clear();
+                                selectedViews.clear();
+                            }
+                            allowedToTrade = false;
+                        }
+                        else//not equal. reset everything
+                        {
+                            for (ImageView viewInEffectView: effectedViews)
+                                viewInEffectView.getDrawable().clearColorFilter();
+                            for (ImageView viewInSelectedView: selectedViews)
+                                viewInSelectedView.setAlpha(1f);
+                            allowedToTrade = true;
+                        }
+                        selectEffectedViews = false;
+                    }
+                    else
+                    {
+                        //selecting effectView
+                        selectEffectedViews = true;
+                    }
                 }
                 else
                     ;//complete order
@@ -167,11 +226,24 @@ public class Game
                 else
                 {
                     allowedToTrade = true;
-                    for (int i = 0; i < 5; i++)
+                    //for (int i = 0; i < 5; i++)
+                    int i = 0;
+                    for (ImageView imageViewInHand: handView)
                     {
-                        ImageView temp = (ImageView) gridLayout.findViewWithTag(listOfPlayers.get(0).hand.get(i));
-                        temp.setTag(listOfPlayers.get(1).hand.get(i));
-                        temp.setImageBitmap(decodeSampledBitmapFromResource(res, listOfPlayers.get(1).hand.get(i).drawableResource, 125, 125));
+                        //imageViewInHand.setTag(listOfPlayers.get(1).hand.get(i));
+                        //imageViewInHand.setImageBitmap(decodeSampledBitmapFromResource(res, listOfPlayers.get(1).hand.get(i).drawableResource, 125, 125));
+                        //ImageView temp = (ImageView) handView;
+                        //ImageView temp = (ImageView) gridLayout.findViewWithTag(listOfPlayers.get(0).hand.get(i));
+                        if (listOfPlayers.get(1).hand.size() == i)
+                        {
+                            imageViewInHand.setImageBitmap(decodeSampledBitmapFromResource(res, 0, 125, 125));//.setTag(i + 10,);//set null tag
+                        }
+                        else
+                        {
+                            imageViewInHand.setTag(listOfPlayers.get(1).hand.get(i));
+                            imageViewInHand.setImageBitmap(decodeSampledBitmapFromResource(res, listOfPlayers.get(1).hand.get(i).drawableResource, 125, 125));
+                        }
+                        i++;
                     }
                     player1Turn = !player1Turn;
                     listOfPlayers.add(listOfPlayers.get(0));
@@ -248,22 +320,31 @@ public class Game
         imageView.setLayoutParams(param);
         imageView.setTag(obj);
         //imageView.setTag(indexNumberOfPoints, obj);
+        if (indexNumberOfPoints > 9)
+            handView.add(imageView);
         indexNumberOfPoints++;
         imageView.setOnTouchListener(new Touch());
         gridLayout.addView(imageView);
     }
-    asdfsdf//image view set opaque when chosen. code to make trade when action is clicked. also code should
-    // reset imageview alpha whenever either button is clicked
+
     public class Touch implements View.OnTouchListener
     {
         @Override
         public boolean onTouch(View v, MotionEvent event)
         {
             if (v.getTag().getClass().equals(Ingredient.class))//ingredient
-            {//train
-                ImageView tempView = ((ImageView)v);
-                tempView.setAlpha(0.25f);
-                selectedViews.add(tempView);
+            {
+                ImageView tempView = ((ImageView) v);//set tags for ingredients in hand to prevent ingreds in the store from getting change alpha
+                if (!selectEffectedViews)
+                {
+                    tempView.setAlpha(0.25f);
+                    selectedViews.add(tempView);
+                }
+                else
+                {
+                    tempView.getDrawable().setColorFilter(Color.rgb(32,128,32), PorterDuff.Mode.MULTIPLY);
+                    effectedViews.add(tempView);
+                }
             }
             else if (v.getTag().getClass().equals(Order.class))//order
             {
